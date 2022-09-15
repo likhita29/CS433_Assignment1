@@ -37,14 +37,17 @@ def dwd(cmd):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((host, port))
     client_socket.send(cmd.encode())
+    response = client_socket.recv(1024).decode()
     cmd = cmd.split(' ')
-    with open(cmd[2] + '_dwd_' + cmd[1], 'wb') as downloaded_file:
-        while True:
-            data = client_socket.recv(1024)
-            if not data:
-                break
-            downloaded_file.write(data)
-        downloaded_file.close()
+    print("Status: ", response)
+    if (response == "OK"):
+        with open(cmd[2] + '_dwd_' + cmd[1], 'wb') as downloaded_file:
+            while True:
+                data = client_socket.recv(1024)
+                if not data:
+                    break
+                downloaded_file.write(data)
+            downloaded_file.close()
     client_socket.close()
 
 def upd(cmd):
@@ -52,19 +55,25 @@ def upd(cmd):
     client_socket.connect((host, port))
     client_socket.send(cmd.encode())
     cmd = cmd.split(' ')
-    with open(cmd[1], 'rb') as file_to_upload:
-        data = file_to_upload.read(1024)
-        while(data):
-            client_socket.send(data)
+    try:
+        with open(cmd[1], 'rb') as file_to_upload:
+            client_socket.send("OK".encode())
+            print("Status: OK")
             data = file_to_upload.read(1024)
-            file_to_upload.close()
+            while(data):
+                client_socket.send(data)
+                data = file_to_upload.read(1024)
+                file_to_upload.close()
+    except:
+        client_socket.send("NOK".encode())
+        print("Status: NOK")
     client_socket.close()
 
 def client_program():
     global host, port
     host = socket.gethostname()
     port = 5000
-
+    print("Connecting to the server with HOST: ", host)
     cmd = str(input('>> '))   
     while cmd.lower().strip() != 'exit':
         cmd_list = cmd.split(' ')
