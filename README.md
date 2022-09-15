@@ -62,4 +62,4 @@ In this layer, Transmission Control Protocol(TCP) is used to exchange messages b
 **1. cwd** <br>
 Syntax: *cwd*
 Functionality: Gives the current working directory of the server
-![alt text](./images/cwd.png)
+![image](./images/cwd.png)
