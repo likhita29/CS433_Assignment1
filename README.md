@@ -6,7 +6,7 @@ This repository contains a simple Remote File System(RFS) service application de
 | ---------------| ------------------------------------------------------------------| ------- |
 | cwd            | Retrieve the path of the current working directory of the server  |         |
 | ls             | List the files/folders present in the cwd of the server           |         |
-| cd 'dir'       | Change the directory to 'dir' as specified by the client          |  OK/NOK |
+| cd 'dir'       | Change the server directory to 'dir' as specified by client       |  OK/NOK |
 | dwd 'filename' | Download the 'filename' from server to the client                 |  OK/NOK |
 | upd 'filename' | Upload the 'filename' from client to the cwd of server            |  OK/NOK |
 <br>
@@ -59,7 +59,51 @@ In this layer, Transmission Control Protocol(TCP) is used to exchange messages b
 
 ## Commands
 
-**1. cwd** <br>
-Syntax: *cwd*
-Functionality: Gives the current working directory of the server
+### **1. cwd** <br>
+**Syntax:** *cwd* <br>
+**Functionality:** Gives the current working directory of the server <br>
+
 ![image](./images/cwd.png)
+
+<br>
+
+### **2. ls** <br>
+**Syntax:** *ls* <br>
+**Functionality:** Lists all files and folders in the cwd of the server <br>
+
+![image](./images/ls.png)
+
+<br>
+
+### **3. cd** <br>
+**Syntax:** *cd 'dir'* <br>
+**Functionality:** Changes the cwd of the server to the 'dir' specified by the client<br>
+
+![image](./images/cd.png)
+
+<br>
+
+### **4. dwd** <br>
+**Syntax:** *dwd 'filename' crypto_model* <br>
+crypto_model can be *plain*, *substitute*, or *transpose*
+**Functionality:** Downloads the 'filename' from the Server_End to the Client_End using the specified *crypto_model*<br>
+
+![image](./images/dwd.png)
+<br>
+
+**Output:** <br>
+
+![image](./images/dwd_output.png)
+
+<br>
+
+### **5. upd** <br>
+**Syntax:** *upd 'filename'* <br>
+**Functionality:** Uploads the 'filename' from the Client_End to the Server_End <br>
+
+![image](./images/upd.png)
+<br>
+
+**Output:** <br>
+
+![image](./images/upd_output.png)
