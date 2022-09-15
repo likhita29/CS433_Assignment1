@@ -64,7 +64,6 @@ In this layer, Transmission Control Protocol(TCP) is used to exchange messages b
 **Functionality:** Gives the current working directory of the server <br>
 
 ![image](./images/cwd.png)
-
 <br>
 
 ### **2. ls** <br>
@@ -72,7 +71,6 @@ In this layer, Transmission Control Protocol(TCP) is used to exchange messages b
 **Functionality:** Lists all files and folders in the cwd of the server <br>
 
 ![image](./images/ls.png)
-
 <br>
 
 ### **3. cd** <br>
@@ -80,7 +78,6 @@ In this layer, Transmission Control Protocol(TCP) is used to exchange messages b
 **Functionality:** Changes the cwd of the server to the 'dir' specified by the client<br>
 
 ![image](./images/cd.png)
-
 <br>
 
 ### **4. dwd** <br>
@@ -94,7 +91,6 @@ crypto_model can be *plain*, *substitute*, or *transpose* <br>
 **Output:** <br>
 
 ![image](./images/dwd_output.png)
-
 <br>
 
 ### **5. upd** <br>
