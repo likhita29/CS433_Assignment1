@@ -81,6 +81,5 @@ def client_program():
 
         cmd = str(input('>> '))
 
-
 if __name__ == '__main__':
     client_program()
