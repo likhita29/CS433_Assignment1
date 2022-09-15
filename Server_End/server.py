@@ -8,7 +8,7 @@ def cwd(cmd):
 def ls(cmd):
     files = str(os.listdir())
     conn.send(files.encode())
-
+    
 def cd(cmd):
     try:
         path = Path(cmd[1])
