@@ -1,0 +1,2 @@
+This file is going to be uploaded to the Server_End repository
+You may enter upd file_to_upload in the terminal to upload
