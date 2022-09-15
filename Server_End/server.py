@@ -1,6 +1,6 @@
 import socket, os
 from pathlib import Path
-from helper_functions import encrypt, reverse
+from helper_functions import encrypt, transpose
 
 def cwd(cmd):
     conn.send(os.getcwd().encode())
@@ -20,28 +20,34 @@ def cd(cmd):
         conn.send(os.getcwd().encode())
 
 def dwd(cmd):
-    with open(cmd[1], 'rb') as file_to_download:
-        for word in file_to_download:
-            if (cmd[2] == 'plain'):
-                conn.sendall(word)
-            elif (cmd[2] == 'substitute'):
-                conn.sendall(encrypt(word.decode(), 2).encode())
-                conn.sendall("\n".encode())
-            elif (cmd[2] == 'reverse'):
-                conn.sendall(reverse(word.decode()).encode())
-                conn.sendall("\n".encode())
+    try:
+        with open(cmd[1], 'rb') as file_to_download:
+            conn.send("OK".encode())
+            for word in file_to_download:
+                if (cmd[2] == 'plain'):
+                    conn.sendall(word)
+                elif (cmd[2] == 'substitute'):
+                    conn.sendall(encrypt(word.decode(), 2).encode())
+                    conn.sendall("\n".encode())
+                elif (cmd[2] == 'transpose'):
+                    conn.sendall(transpose(word.decode()).encode())
+                    conn.sendall("\n".encode())
+    except:
+        conn.send("NOK".encode())
 
 def upd(cmd):
-    with open('uploaded_'+cmd[1], 'wb') as uploaded_file:
-        cmdv= conn.recv(1024)
-        while True:
-            if not cmd:
+    response = conn.recv(1024).decode()
+    if (response == "OK"):
+        with open('upd_'+cmd[1], 'wb') as uploaded_file:
+            word = conn.recv(1024)
+            while True:
+                if not word:
+                    break
+                else:
+                    uploaded_file.write(word)
+                    word = conn.recv(1024)
+                uploaded_file.close()
                 break
-            else:
-                uploaded_file.write(cmd)
-                cmd = conn.recv(1024)
-            uploaded_file.close()
-            break
 
 def server_program():
     host = socket.gethostname()
@@ -49,10 +55,12 @@ def server_program():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((host, port))
     server_socket.listen(1)
+    print("Waiting for client to connect on PORT:", port)
 
     while True:
         global conn
         conn, address = server_socket.accept()
+        print("Connection established. HOST: " + str(host) + "PORT: " + str(port))
         cmd = conn.recv(1024).decode()
         if (cmd == 'exit'):
             conn.close()
