@@ -85,7 +85,7 @@ In this layer, Transmission Control Protocol(TCP) is used to exchange messages b
 
 ### **4. dwd** <br>
 **Syntax:** *dwd 'filename' crypto_model* <br>
-crypto_model can be *plain*, *substitute*, or *transpose*
+crypto_model can be *plain*, *substitute*, or *transpose* <br>
 **Functionality:** Downloads the 'filename' from the Server_End to the Client_End using the specified *crypto_model*<br>
 
 ![image](./images/dwd.png)
