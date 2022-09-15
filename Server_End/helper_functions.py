@@ -1,4 +1,4 @@
-#These functions are used in server.py to encrypt and reverse text
+#These functions are used in server.py to encrypt and transpose text
 
 def encrypt(text, s): 
     text = text.strip()
@@ -18,7 +18,7 @@ def encrypt(text, s):
             result += chr((ord(char) + s - 97) % 26 + 97)
     return result 
 
-def reverse(text): 
+def transpose(text):
     new_cmd = ""
     for word in text.split():
         rev_word = word[::-1]
