@@ -1,5 +1,3 @@
-#These functions are used in server.py to encrypt and reverse text
-
 def encrypt(text, s): 
     text = text.strip()
     result = "" 
