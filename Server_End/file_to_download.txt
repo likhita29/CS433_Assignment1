@@ -1,4 +1,4 @@
-This file is going to be downloaded to the Client_End repository
+This file is going to be downloaded from Server_End to the Client_End
 You can download it in the following formats
 1 Plain Text
 2 Substituted Text
