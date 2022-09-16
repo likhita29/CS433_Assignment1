@@ -43,7 +43,7 @@ def dwd(cmd):
     cmd = cmd.split(' ')
     print("Status: ", response)
     if (response == "OK"):
-        with open('dwd'+cmd[1], 'wb') as downloaded_file:
+        with open('dwd_'+cmd[1], 'wb') as downloaded_file:
             while True:
                 data = client_socket.recv(1024)
                 if (cmd[2] == 'plain'):
