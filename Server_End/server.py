@@ -1,6 +1,6 @@
 import socket, os
 from pathlib import Path
-from helper_functions import encrypt, transpose
+from helper_functions import substitute, transpose
 
 def cwd(cmd):
     conn.send(os.getcwd().encode())
@@ -27,11 +27,9 @@ def dwd(cmd):
                 if (cmd[2] == 'plain'):
                     conn.sendall(word)
                 elif (cmd[2] == 'substitute'):
-                    conn.sendall(encrypt(word.decode(), 2).encode())
-                    conn.sendall("\n".encode())
+                    conn.sendall(substitute(word.decode(), 2).encode())
                 elif (cmd[2] == 'transpose'):
                     conn.sendall(transpose(word.decode()).encode())
-                    conn.sendall("\n".encode())
     except:
         conn.send("NOK".encode())
 

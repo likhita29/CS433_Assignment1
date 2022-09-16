@@ -15,8 +15,9 @@ This repository contains a simple Remote File System(RFS) service application de
 
 1. Client_End
     - client.py: Contains the code for the client
+    - helper_functions.py: Contains text encryption functions
     - file_to_upload.txt: The original file that is tested against uploading functionality
-    - plain_dwd_file_to_download, substitute_dwd_file_to_download, transpose_dwd_file_to_download: The files downloaded from the server to the client
+    - dwd_file_to_download: The file downloaded from the server to the client
 2. Server_End
     - server.py: Contains the code for the server
     - helper_functions.py: Contains text encryption functions
@@ -24,6 +25,16 @@ This repository contains a simple Remote File System(RFS) service application de
     - upd_file_to_upload.txt: File uploaded from the client to the server
 
 NOTE: client.py and server.py are purposefully built in different folders to understand better movement of files between the client and server
+<br>
+<br>
+
+## Execution Means
+
+1. Run server.py from Server_End
+2. Then, run client.py from Client_End
+3. This establishes the connection
+4. Follow with entering any of the five commands in the client terminal
+5. Enter 'exit' to disconnect client from server
 <br>
 <br>
 
@@ -63,21 +74,21 @@ In this layer, Transmission Control Protocol(TCP) is used to exchange messages b
 **Syntax:** *cwd* <br>
 **Functionality:** Gives the current working directory of the server <br>
 
-![image](./images/cwd.png)
+![image](./Execution_Images/cwd.png)
 <br>
 
 ### **2. ls** <br>
 **Syntax:** *ls* <br>
 **Functionality:** Lists all files and folders in the cwd of the server <br>
 
-![image](./images/ls.png)
+![image](./Execution_Images/ls.png)
 <br>
 
 ### **3. cd** <br>
 **Syntax:** *cd 'dir'* <br>
 **Functionality:** Changes the cwd of the server to the 'dir' specified by the client<br>
 
-![image](./images/cd.png)
+![image](./Execution_Images/cd.png)
 <br>
 
 ### **4. dwd** <br>
@@ -85,21 +96,12 @@ In this layer, Transmission Control Protocol(TCP) is used to exchange messages b
 crypto_model can be *plain*, *substitute*, or *transpose* <br>
 **Functionality:** Downloads the 'filename' from the Server_End to the Client_End using the specified *crypto_model*<br>
 
-![image](./images/dwd.png)
-<br>
-
-**Output:** <br>
-
-![image](./images/dwd_output.png)
+![image](./Execution_Images/dwd.png)
 <br>
 
 ### **5. upd** <br>
 **Syntax:** *upd 'filename'* <br>
 **Functionality:** Uploads the 'filename' from the Client_End to the Server_End <br>
 
-![image](./images/upd.png)
+![image](./Execution_Images/upd.png)
 <br>
-
-**Output:** <br>
-
-![image](./images/upd_output.png)

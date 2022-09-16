@@ -1,4 +1,6 @@
 import socket, os
+from turtle import down
+from helper_functions import substitute, transpose
 
 def cwd(cmd):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -41,12 +43,18 @@ def dwd(cmd):
     cmd = cmd.split(' ')
     print("Status: ", response)
     if (response == "OK"):
-        with open(cmd[2] + '_dwd_' + cmd[1], 'wb') as downloaded_file:
+        with open('dwd'+cmd[1], 'wb') as downloaded_file:
             while True:
                 data = client_socket.recv(1024)
+                if (cmd[2] == 'plain'):
+                    downloaded_file.write(data)
+                elif (cmd[2] == 'substitute'):
+                    downloaded_file.write(substitute(data.decode(), -2).encode())
+                elif (cmd[2] == 'transpose'):
+                    downloaded_file.write(transpose(data.decode()).encode())
+                print(data)
                 if not data:
                     break
-                downloaded_file.write(data)
             downloaded_file.close()
     client_socket.close()
 

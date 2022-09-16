@@ -1,2 +1,1 @@
-This file is going to be uploaded from Client_End to the Server_End
-You may enter upd file_to_upload in the terminal to upload
+Task 102 This file is going to be uploaded from Client End to the Server End

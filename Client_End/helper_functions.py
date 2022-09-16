@@ -6,16 +6,16 @@ def substitute(text, s):
     for i in range(len(text)): 
         char = text[i]
         # print(char)
-        if (char.isnumeric()):
+        if (char == " "):
+            result += " "
+        elif (char.isnumeric()):
             temp = ord(str((int(char)+s)%10))
             result += chr(temp)
         elif (char.isupper()): 
             temp = (ord(char) + s-65) % 26 + 65
             result += chr((ord(char) + s-65) % 26 + 65) 
-        elif (char.islower()):
-            result += chr((ord(char) + s - 97) % 26 + 97)
         else:
-            result += char
+            result += chr((ord(char) + s - 97) % 26 + 97)
     return result 
 
 def transpose(text):
